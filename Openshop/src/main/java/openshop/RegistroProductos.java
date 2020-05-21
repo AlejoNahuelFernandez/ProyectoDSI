@@ -9,9 +9,11 @@ public class RegistroProductos
     public static void MostrarProductos()
     {
         System.out.println("Productos: ");
+        int pos=1;
         for (Producto producto: Productos)
         {
-            System.out.println("-" + producto.getNombre() + " $" + producto.getPrecio() + " (" + producto.getCantidad() + " disponibles)");
+            System.out.println(pos + "-" + producto.getNombre() + " " + producto.getMarca() + " $" + producto.getPrecio() + " (" + producto.getCantidad() + " disponibles)");
+            pos++;
 	}
      }
 }
