@@ -11,7 +11,6 @@ public class Carrito
     public Carrito()
     {
         productos=new ArrayList<ProductoEnCarrito>();
-        precioTotal=0;
     }
     
     public void AgregarAlCarrito(Producto producto, int cantidad)
@@ -22,7 +21,6 @@ public class Carrito
        {
            if (productos.get(i).Producto == producto)
            {
-               //productos.get(i).cantidad = productos.get(i).cantidad + cantidad;
                productos.get(i).ActualizarCantidad(cantidad);
                s=1;
            }
@@ -40,12 +38,24 @@ public class Carrito
     
     public void MostrarCarrito()
     {
+        precioTotal=0;
         System.out.println("Carrito de compras: ");
         for (ProductoEnCarrito productoenCarrito: productos)
         {
-           System.out.println (productoenCarrito.cantidad + " x " +productoenCarrito.Producto.getNombre() + " $" + productoenCarrito.Producto.getPrecio());
+           System.out.println (productoenCarrito.cantidad + "x " +productoenCarrito.Producto.getNombre() + " " +productoenCarrito.Producto.getMarca() +" $" + productoenCarrito.Producto.getPrecio());
            precioTotal= precioTotal + ((productoenCarrito.cantidad)*productoenCarrito.Producto.getPrecio());
         }
         System.out.println("Precio total: $" +precioTotal);
     }
-}
+    
+    public ArrayList<ProductoEnCarrito>obtenerLista()
+    {
+        return productos;
+    }
+    public void VaciarCarrito()
+    {
+        productos.clear();
+    }
+    
+ }
+

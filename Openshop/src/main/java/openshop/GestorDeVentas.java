@@ -7,7 +7,9 @@ import java.util.ArrayList;
 public class GestorDeVentas 
 {
     static ArrayList<MedioDePago>MediosDePago = new ArrayList();
+    static ArrayList<Venta>Ventas= new ArrayList();
     static Carrito carrito= new Carrito();
+    
     
     public static void main (String[] args)
     {
@@ -24,16 +26,12 @@ public class GestorDeVentas
         while (true)
         {
             boolean finalizado;
-            finalizado = Comprar();
+            finalizado = Menu();
             if (finalizado == true)
             {
                 break;
             }
         }
-        
-        AgregarPago();
-        
-        System.out.println("Gracias por su compra");
     }
     
     public static boolean Comprar()
@@ -89,7 +87,7 @@ public class GestorDeVentas
         }
     }
     
-    public static void AgregarPago()
+    public static MedioDePago AgregarPago()
     {
         Scanner entrada = new Scanner(System.in);
         System.out.println("Medios de pago: ");
@@ -109,6 +107,96 @@ public class GestorDeVentas
         MedioDePago formaPago;
         formaPago = MediosDePago.get(numeroMedioPago - 1);
         System.out.println("El medio de pago elegido fue: " + formaPago.getNombre());
+        return formaPago;
+        
     }
     
+    public static boolean Menu()
+    {
+        
+        int opcion;
+        Scanner entrada = new Scanner(System.in);
+        System.out.println ("Menu: \n1.Comprar \n2.Preparar pedido");
+        System.out.println ("Digite el numero correspondiente");
+        do
+        {
+            opcion = entrada.nextInt();
+            if ((opcion<1)||(opcion>2))
+            {
+                System.out.println ("La opción ingresada no es valida");
+            }
+        } while((opcion<1)||(opcion>2));
+        
+        switch(opcion)
+        {
+            case 1:
+                while (true)
+                {
+                    boolean finalizado;
+                    finalizado = Comprar();
+                    if (finalizado == true)
+                    {
+                        break;
+                    }
+                }
+                MedioDePago medioPago;
+                medioPago = AgregarPago();
+                System.out.println("Gracias por su compra");
+                
+                ArrayList<ProductoEnCarrito>productos;
+                productos=carrito.obtenerLista();
+                Venta venta = new Venta("20-04-2020",medioPago);
+                for (ProductoEnCarrito item: productos)
+                {
+                    ItemVenta itemVenta = new ItemVenta(item.Producto,item.cantidad,item.Producto.getPrecio());
+                    venta.AgregarItem(itemVenta);
+                }
+                Ventas.add(venta);
+                carrito.VaciarCarrito();
+                break;
+            
+            case 2:
+                System.out.println ("Pedidos: ");
+                System.out.println(" ");
+                if (Ventas.size()>0)
+                {
+                    for (Venta vta: Ventas)
+                    {
+                        System.out.println("Fecha: " +vta.getFecha());
+                        vta.MostrarItems();
+                        System.out.println("Medio de pago: " +vta.getPago());
+                        System.out.println(" ");
+                    }
+                }
+                else
+                {
+                    System.out.println("No hay ventas");
+                }
+                
+                break;
+        }
+        
+        int opc;
+        System.out.println("¿Desea seguir trabajando?");
+        System.out.println("\n1.Continuar  \n2.Finalizar ");
+        
+        do
+        {
+            opc = entrada.nextInt();
+            if ((opc<1)||(opc>2))
+            {
+                System.out.println ("La opción ingresada no es válida, vuelva a ingresar");
+            }
+        }while((opc<1)||(opc>2));
+        
+        if(opc==1)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+        
+    }
 }
