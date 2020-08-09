@@ -12,6 +12,7 @@ public class RegistroInscripciones
         for (Inscripcion inscripcion: Inscripciones)
         {
             System.out.println(pos + "- Alumno: " + inscripcion.getAlumno() + " Curso: " + inscripcion.getCurso());
+            pos++;
         }
     }
 }

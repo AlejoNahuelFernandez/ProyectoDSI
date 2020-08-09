@@ -1,5 +1,6 @@
 
 package dsitp3;
+import static dsitp3.RegistroDocentes.Docentes;
 import java.util.ArrayList;
 
 public class Curso 
@@ -8,7 +9,7 @@ public class Curso
     private String descripcion;
     private String horario;
     private String fechasDictado;
-    public static ArrayList<Docente>docentes = new ArrayList();
+    public ArrayList<Docente>docentes = new ArrayList();
     private String aula;
     private int cupoMinimo;
     private int cupoMaximo;
@@ -69,5 +70,16 @@ public class Curso
     public void setEstadoCurso(boolean estado)
     {
         this.estadoCurso=estado;
+    }
+    public void MostrarDocentes()
+    {
+        int pos = 1;
+        System.out.println ("Docentes del curso: " +nombre + " " + descripcion);
+        
+        for (Docente docente: docentes)
+        {
+            System.out.println(pos + "-" +docente.getNombre() +" DNI: " +docente.getDNI());
+            pos++;
+        }
     }
 }

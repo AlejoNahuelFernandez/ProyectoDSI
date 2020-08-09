@@ -42,14 +42,14 @@ public class GestorPrincipal
     
     public static void AgregarCurso()
     {
-        Scanner entrada = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
         System.out.println("Nombre del curso: ");
-        String nombre = entrada.next();
-        System.out.println("Descripcion: ");
-        String descripcion = entrada.next();
+        String nombre = input.nextLine();
+        System.out.println("Descripción: ");
+        String descripcion = input.nextLine();
         RegistroDocentes.MostrarDocentes();
         System.out.println("Seleccione docente");
-        int opc = entrada.nextInt();
+        int opc = input.nextInt();
         int posicion = opc - 1;
         Docente docente = RegistroDocentes.Docentes.get(posicion);
         Curso curso = new Curso(nombre,descripcion);
@@ -67,14 +67,17 @@ public class GestorPrincipal
         Curso curso = RegistroCursos.Cursos.get(pos);
         
         System.out.println("Horario: ");
-        String horario = entrada.next();
+        String horario;
+        entrada.nextLine();
+        horario = entrada.nextLine();
         curso.setHorario(horario);
         
         System.out.println ("Fechas de dictado: ");
-        String fechasDictado = entrada.next();
+        String fechasDictado;
+        fechasDictado = entrada.nextLine();
         curso.setFechasDictado(fechasDictado);
         
-        if (curso.docentes.size()==0)
+        if (curso.docentes.isEmpty())
         {
             RegistroDocentes.MostrarDocentes();
             System.out.println ("Seleccione docente:");
@@ -85,7 +88,9 @@ public class GestorPrincipal
         }
         
         System.out.println("Aula: ");
-        String aula = entrada.next();
+        String aula;
+        entrada.nextLine();
+        aula = entrada.nextLine();
         curso.setAula(aula);
         
         System.out.println("Cupo mínimo de alumnos: ");
@@ -96,8 +101,9 @@ public class GestorPrincipal
         int cupoMaximo = entrada.nextInt();
         curso.setCupoMaximo(cupoMaximo);
         
-        System.out.println("Ingresar fecha límite de inscripción [dd/mm/aaaa]: ");
-        String fechaLimite = entrada.next();
+        System.out.println("Ingresar fecha límite de inscripción (dd/mm/aaaa): ");
+        String fechaLimite;
+        fechaLimite = entrada.next();
         curso.setFechaLimite(fechaLimite);
         
         curso.setEstadoCurso(true);
@@ -119,18 +125,21 @@ public class GestorPrincipal
         Curso curso = RegistroCursos.Cursos.get(pos);
         
         curso.AgregarDocente(docente);
+        curso.MostrarDocentes();
     }
     
     public static void RegistrarInscripcion()
     {
         Scanner entrada = new Scanner(System.in);
-        System.out.println("¿Alumno regstrado? \n1-Sí \n2-No");
+        System.out.println("¿Alumno registrado? \n1-Sí \n2-No");
         int opcion = entrada.nextInt();
-        RegistroAlumnos.MostrarAlumnos();
+        
         if (opcion == 2)
         {
             System.out.println("Nombre y apellido: ");
-            String nombreYap = entrada.next();
+            String nombreYap;
+            entrada.nextLine();
+            nombreYap = entrada.nextLine();
         
             System.out.println("DNI: ");
             int dni = entrada.nextInt();
@@ -145,6 +154,7 @@ public class GestorPrincipal
             RegistroAlumnos.Alumnos.add(alumno);
         }
         
+        RegistroAlumnos.MostrarAlumnos();
         System.out.println("Seleccione alumno: ");
         int seleccion = entrada.nextInt();
         int posicion = seleccion - 1;

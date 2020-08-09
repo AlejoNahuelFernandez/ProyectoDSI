@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class RegistroDocentes 
 {
-    public static ArrayList<Docente>Docentes=new ArrayList<Docente>();
+    public static ArrayList<Docente>Docentes=new ArrayList();
     
     public RegistroDocentes()
     {
