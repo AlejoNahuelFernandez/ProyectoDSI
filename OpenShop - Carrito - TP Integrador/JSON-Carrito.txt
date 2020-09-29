@@ -1,0 +1,63 @@
+Enviamos:
+ * A cobranza : id Venta + articulos vendidos + cliente
+
+Estructura:
+
+{
+    "idVenta": int
+  "articulosVendidos": [
+        {
+            "id": 
+   "nombre": 
+   "marca": 
+   "precio": 
+   "descripcion": 
+        ],
+    }
+  "cliente": [
+        {
+     “id”: 
+    "nombre":
+    "apellido": 
+   "mail": 
+    "usuario": 
+    "contraseña": 
+    "dni": 
+    "domicilio": 
+        }
+    ]
+}
+
+
+
+Ejemplo:
+
+{
+    "idVenta": 1
+  "articulosVendidos": [
+        {
+            "id": 1
+   "nombre": "Iphone s6"
+   "marca": "Apple"
+   "precio": 50000
+   "descripcion": "celular"
+        ],
+    }
+  "cliente": [
+        {
+     “id”: 1
+    "nombre": "Hugo"
+    "apellido": "Peñas"
+   "mail": "hugopeñas@gmail.com"
+    "usuario": "hugoP51
+    "contraseña": "huguito1987"
+    "dni": 25597041
+    "domicilio": "Larrea 692, San Francisco - Córdoba"
+        }
+    ]
+}
+
+
+Recibimos:
+* Productos con precios y características de catálogo
+* Stock  y la tarifa de envío de despacho
